@@ -1,0 +1,28 @@
+{
+  "1000": "Api is working fine.",
+  "1001": "User added successfully.",
+  "1002": "User not found.",
+  "1003": "User logged In.",
+  "1004": "Wrong Creds.",
+  "1005": "Item added successfully.",
+  "1006": "No fields provided for update.",
+  "1007": "Brand updated successfully",
+  "1008": "Brand not found",
+  "1009": "Brand not found or already deleted.",
+  "1010": "Brand deleted",
+
+  "1011": "Customer added",
+  "1012": "Dealer added",
+  "1013": "Order created"
+
+
+
+
+
+
+
+
+
+  
+
+}
