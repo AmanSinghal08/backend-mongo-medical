@@ -8,6 +8,7 @@ const Validators: any = {
     name: Joi.string().required().trim(),
     mobileNo: Joi.string().required().trim(),
     address: Joi.string().optional().allow(null, ""),
+    licenseNo: Joi.string().optional().allow(null, ""),
     city: Joi.string().optional().allow(null, ""),
     isActive: Joi.boolean().optional(),
     currentBalance: Joi.number().min(0).optional(),
@@ -19,6 +20,7 @@ const Validators: any = {
     city: Joi.string().optional().allow(null, ""),
     isActive: Joi.boolean().optional(),
     currentBalance: Joi.number().min(0).optional(),
+    licenseNo: Joi.string().optional().allow(null, ""),
   }),
 };
 

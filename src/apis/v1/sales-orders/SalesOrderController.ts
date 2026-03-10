@@ -198,6 +198,9 @@ class SalesOrderController extends BaseController {
                 $project: {
                   name: 1,
                   mobileNo: 1,
+                  licenseNo: 1,
+                  address: 1,
+                  city: 1
                 },
               },
             ],
@@ -215,6 +218,9 @@ class SalesOrderController extends BaseController {
             _id: 1,
             customer_name: "$customer.name",
             customer_mobile: "$customer.mobileNo",
+            customer_address: "$customer.address",
+            customer_licenseNo: "$customer.licenseNo",
+            customer_city: "$customer.city",
             orderDate: 1,
             customerId: 1,
             dueDate: 1,
@@ -226,6 +232,7 @@ class SalesOrderController extends BaseController {
             notes: 1,
             createdAt: 1,
             updatedAt: 1,
+            orderNumber: "$orderNumber"
           },
         },
       ]);

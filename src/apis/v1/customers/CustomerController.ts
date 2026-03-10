@@ -21,17 +21,8 @@ class CustomerController extends BaseController {
   ): Promise<void | any> {
     const _resData: IResponseObject = UtilsHelper.responseObject();
     try {
-      const { name, mobileNo, address, city, isActive, currentBalance } =
-        req.body;
 
-      await Model.Customer.create({
-        name,
-        mobileNo: mobileNo,
-        address: address || undefined,
-        city: city || undefined,
-        isActive: isActive ?? true,
-        currentBalance: currentBalance ?? 0,
-      });
+      await Model.Customer.create(req.body);
 
       _.assign(_resData, {
         data: null,

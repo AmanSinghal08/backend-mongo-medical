@@ -10,7 +10,6 @@ import SalesOrder from "../../../models/SalesOrder";
 import SalesOrderItem from "../../../models/SalesOrderItem";
 import * as Model from "../../../models";
 
-
 class SalesOrderItemController extends BaseController {
   constructor() {
     super();
@@ -152,19 +151,69 @@ class SalesOrderItemController extends BaseController {
             from: "sales_orders",
             localField: "salesOrderId",
             foreignField: "_id",
+            pipeline: [
+              {
+                $project: {
+                  orderDate: "$orderDate",
+                },
+              },
+            ],
             as: "sales_order",
           },
         },
-        { $unwind: { path: "$sales_order", preserveNullAndEmptyArrays: true } },
+        {
+          $unwind: {
+            path: "$sales_order",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+
+        {
+          $lookup: {
+            from: "inventory_batches",
+            localField: "inventoryBatchId",
+            foreignField: "_id",
+            pipeline: [
+              {
+                $project: {
+                  batchNo: "$batchNo",
+                  expiryDate: "$expiryDate",
+                  mrp: "$mrp",
+                  hsn: "$hsn",
+                },
+              },
+            ],
+            as: "inventory_batches",
+          },
+        },
+        {
+          $unwind: {
+            path: "$inventory_batches",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
         {
           $lookup: {
             from: "products",
             localField: "productId",
             foreignField: "_id",
+            pipeline: [
+              {
+                $project: {
+                  name: 1,
+                  pack: "$pack"
+                },
+              },
+            ],
             as: "product",
           },
         },
-        { $unwind: { path: "$product", preserveNullAndEmptyArrays: true } },
+        {
+          $unwind: {
+            path: "$product",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
         { $sort: { _id: -1 } },
         {
           $project: {
@@ -175,16 +224,16 @@ class SalesOrderItemController extends BaseController {
             inventoryBatchId: 1,
             productId: 1,
             productName: 1,
-            batchNo: 1,
-            expiryDate: 1,
-            pack: 1,
-            hsn: 1,
+            pack:  "$product.pack",
             qty: 1,
-            mrp: 1,
             rate: 1,
             sgst: 1,
             cgst: 1,
             lineAmount: 1,
+            batchNo: "$inventory_batches.batchNo",
+            expiryDate: "$inventory_batches.expiryDate",
+            mrp: "$inventory_batches.mrp",
+            hsn: "$inventory_batches.hsn",
           },
         },
       ]);
@@ -239,7 +288,10 @@ class SalesOrderItemController extends BaseController {
       const { productId, customerId } = req.params;
 
       _.assign(_resData, {
-        data: await Model.SalesOrderItem.findOne({ productId, customerId }).lean(),
+        data: await Model.SalesOrderItem.findOne({
+          productId,
+          customerId,
+        }).lean(),
         msgCode: "1010",
         msg: "Last Sold product",
       });
