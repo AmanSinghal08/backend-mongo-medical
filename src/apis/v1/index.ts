@@ -15,8 +15,8 @@ import dealerPaymentRouter from "./dealer-payments";
 import Auth from "../../services/Auth";
 
 export function mount(app: Application): void {
-  app.use("/v1", Auth, IndexRouter);
   app.use("/v1/auth", AuthRouter);
+  app.use("/v1", Auth, IndexRouter);
   app.use("/v1/inventory", Auth, inventoryRouter);
   app.use("/v1/products", Auth, productRouter);
   app.use("/v1/brands", Auth, brandRouter);
