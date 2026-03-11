@@ -10,6 +10,7 @@ import SalesOrderItem from "./SalesOrderItem";
 import CustomerCollection from "./CustomerCollection";
 import PurchaseOrderItem from "./PurchaseOrderItem";
 import DealerPayment from "./DealerPayment";
+import Admin from "./Admin";
 
 export {
   Customer,
@@ -23,4 +24,5 @@ export {
   CustomerCollection,
   PurchaseOrderItem,
   DealerPayment,
+  Admin
 };

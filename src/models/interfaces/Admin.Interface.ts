@@ -1,6 +1,5 @@
 import { Types } from "mongoose";
 
-
 export interface IAdmin {
   _id: Types.ObjectId;
   firstName:string;
@@ -11,5 +10,6 @@ export interface IAdmin {
   isActive:Boolean;
   role: string
   token: string;
-  password: string
+  password: string;
+  comparePassword(candidatePassword: string): Promise<boolean>;
 }

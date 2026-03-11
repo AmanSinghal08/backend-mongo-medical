@@ -11,6 +11,9 @@ const _openRoutes = function () {
 	*/ 
  
 	 _router.post('/add-user', Validator("addUserValid"), authController.addUser);
+	 _router.post('/login', Validator("loginValid"), authController.login);
+	 _router.get('/session', authController.sessionStatus);
+
   
 };
 

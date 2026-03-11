@@ -12,7 +12,7 @@ const Validators: any = {
     firstName: Joi.string().required().custom(UtilsHelper.JoiCheckValidName),
     lastName: Joi.string().required().custom(UtilsHelper.JoiCheckValidName),
     mobileNo: Joi.string().required().custom(UtilsHelper.JoiCheckValidMobile),
-    email: Joi.string().required().custom(UtilsHelper.JoiCheckValidEmail),
+    email: Joi.string().custom(UtilsHelper.JoiCheckValidEmail),
     password: Joi.string().required().custom(UtilsHelper.JoiCheckValidPassword),
   }),
  

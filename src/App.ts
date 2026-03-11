@@ -4,6 +4,7 @@ import createHttpError from "http-errors";
 import * as APIs from "./apis/index";
 import BaseApp from "./middleware/BaseApp";
 import cors from "cors";
+import session from "express-session";
 import { connectDb } from './services/db';
  
 
@@ -11,7 +12,31 @@ class App extends BaseApp {
 	constructor() {
 		super();
  
-		this.app.use(cors({}));
+		const isProd = process.env.NODE_ENV === "production";
+		this.app.set("trust proxy", 1);
+
+		this.app.use(
+			cors({
+				origin: process.env.ORIGIN,
+				credentials: true,
+			}),
+		);
+
+		this.app.use(
+			session({
+				name: process.env.SESSION_NAME,
+				secret: process.env.SESSION_SECRET || "change-me",
+				resave: false,
+				saveUninitialized: false,
+				cookie: {
+					httpOnly: true,
+					secure: isProd,
+					sameSite: "lax",
+					domain: process.env.DOMAIN,
+					maxAge: 1000 * 60 * 60 * 24 * 7,
+				},
+			}),
+		);
 		APIs.mount(this.app);
 		connectDb().catch((err) => {
 			console.error('Failed to connect to DB:', err);

@@ -10,6 +10,7 @@ import { ISalesOrderItem } from "./SalesOrderItem.Interface";
 import { ICustomerCollection, CustomerCollectionPaymentMode } from "./CustomerCollection.Interface";
 import { IPurchaseOrderItem } from "./PurchaseOrderItem.Interface";
 import { IDealerPayment, DealerPaymentMode } from "./DealerPayment.Interface";
+import { IAdmin } from "./Admin.Interface";
 
 
 export {
@@ -30,5 +31,5 @@ export {
   IPurchaseOrderItem,
   IDealerPayment,
   DealerPaymentMode,
- 
+  IAdmin
 }
