@@ -9,8 +9,6 @@ const adminSchema = new Schema<IAdmin>(
     mobileNo: { type: String, required: true, trim: true },
     email: { 
       type: String, 
-      required: true, 
-      unique: true, 
       lowercase: true, 
       trim: true 
     },
@@ -43,6 +41,6 @@ adminSchema.methods.comparePassword = async function (candidatePassword: string)
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-const Admin = model<IAdmin>("Admin", adminSchema, "admins");
+const Admin = model<IAdmin>("Admin", adminSchema, "Admin");
 
 export default Admin;

@@ -13,12 +13,13 @@ const Validators: any = {
     lastName: Joi.string().required().custom(UtilsHelper.JoiCheckValidName),
     mobileNo: Joi.string().required().custom(UtilsHelper.JoiCheckValidMobile),
     email: Joi.string().custom(UtilsHelper.JoiCheckValidEmail),
-    password: Joi.string().required().custom(UtilsHelper.JoiCheckValidPassword),
+    password: Joi.string().required(),
+    role: Joi.string().required(),
   }),
  
   loginValid: Joi.object({
     mobileNo: Joi.string().required().custom(UtilsHelper.JoiCheckValidMobile),
-    password: Joi.string().required().custom(UtilsHelper.JoiCheckValidPassword),
+    password: Joi.string().required()
   }),
 };
 

@@ -12,19 +12,20 @@ import salesOrderRouter from "./sales-orders";
 import salesOrderItemRouter from "./sales-order-items";
 import customerCollectionRouter from "./customer-collections";
 import dealerPaymentRouter from "./dealer-payments";
+import Auth from "../../services/Auth";
 
 export function mount(app: Application): void {
-  app.use("/v1", IndexRouter);
+  app.use("/v1", Auth, IndexRouter);
   app.use("/v1/auth", AuthRouter);
-  app.use("/v1/inventory", inventoryRouter);
-  app.use("/v1/products", productRouter);
-  app.use("/v1/brands", brandRouter);
-  app.use("/v1/customers", customerRouter);
-  app.use("/v1/dealers", dealerRouter);
-  app.use("/v1/purchase-orders", purchaseOrderRouter);
-  app.use("/v1/purchase-order-items", purchaseOrderItemRouter);
-  app.use("/v1/sales-orders", salesOrderRouter);
-  app.use("/v1/sales-order-items", salesOrderItemRouter);
-  app.use("/v1/customer-collections", customerCollectionRouter);
-  app.use("/v1/dealer-payments", dealerPaymentRouter);
+  app.use("/v1/inventory", Auth, inventoryRouter);
+  app.use("/v1/products", Auth, productRouter);
+  app.use("/v1/brands", Auth, brandRouter);
+  app.use("/v1/customers", Auth, customerRouter);
+  app.use("/v1/dealers", Auth, dealerRouter);
+  app.use("/v1/purchase-orders", Auth, purchaseOrderRouter);
+  app.use("/v1/purchase-order-items", Auth, purchaseOrderItemRouter);
+  app.use("/v1/sales-orders", Auth, salesOrderRouter);
+  app.use("/v1/sales-order-items", Auth, salesOrderItemRouter);
+  app.use("/v1/customer-collections", Auth, customerCollectionRouter);
+  app.use("/v1/dealer-payments", Auth, dealerPaymentRouter);
 }
