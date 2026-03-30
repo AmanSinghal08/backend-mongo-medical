@@ -17,7 +17,7 @@ const salesOrderSchema = new Schema<ISalesOrder>(
     notes: { type: String, trim: true },
   },
   {
-    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+    timestamps: true,
   },
 );
 

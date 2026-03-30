@@ -17,7 +17,7 @@ const inventoryBatchSchema = new Schema<IInventoryBatch>(
     cgst: { type: Number, required: true, default: 0, min: 0 },
   },
   {
-    timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },
+    timestamps: true,
   },
 );
 

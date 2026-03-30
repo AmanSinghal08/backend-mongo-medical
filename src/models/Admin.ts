@@ -19,8 +19,8 @@ const adminSchema = new Schema<IAdmin>(
     password: { type: String, required: true },
   },
   {
-    timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },
-  }
+    timestamps: true,
+  },
 );
 
 adminSchema.pre("save", async function (next) {

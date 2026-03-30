@@ -16,7 +16,7 @@ const purchaseOrderSchema = new Schema<IPurchaseOrder>(
     notes: { type: String, trim: true },
   },
   {
-    timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },
+    timestamps: true,
   },
 );
 

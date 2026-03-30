@@ -12,7 +12,7 @@ const customerSchema = new Schema<ICustomer>(
     currentBalance: { type: Number, required: true, default: 0, min: 0 },
   },
   {
-    timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },
+    timestamps: true,
   },
 );
 

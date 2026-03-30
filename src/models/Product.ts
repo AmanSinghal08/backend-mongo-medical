@@ -12,7 +12,7 @@ const productSchema = new Schema<IProduct>(
     criticalNumberAlert: { type: Number, default: 0 }
   },
   {
-    timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },
+    timestamps: true,
   },
 );
 

@@ -8,7 +8,7 @@ const brandSchema = new Schema<IBrand>(
     companyName: { type: String, trim: true },
   },
   {
-    timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },
+    timestamps: true,
   },
 );
 
